@@ -70,11 +70,13 @@ function show(arr) {
     card.appendChild(content);
 
     // Body me card add
-        document.querySelector(".cards").append(card);
+       let cards= document.querySelector(".cards")
+       cards.append(card);
     });
 };
 
 show(users);
+let cards= document.querySelector(".cards")
 
 let inp = document.querySelector(".inp");
 
@@ -83,7 +85,17 @@ inp.addEventListener("input", function(){
         return user.name.toLowerCase().startsWith(inp.value.toLowerCase());
 
     });
-    document.querySelector(".cards").innerHTML=""; 
-    show(filuser);
+    cards.innerHTML=""; 
+    if(filuser.length === 0){
+        let h3 = document.createElement("h1");
+        h3.textContent = "User Not Found...!";
+        h3.style.color= "red";
+        h3.style.fontFamily = "helvatica";
+        h3.style.fontSize = "30px";
+        cards.appendChild(h3);
+    }else{
+        cards.innerHTML=""; 
+        show(filuser);
+    }
 });
 
